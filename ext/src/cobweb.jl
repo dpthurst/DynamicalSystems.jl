@@ -15,7 +15,7 @@ function DynamicalSystems.interactive_cobweb(
 @assert dimension(ds) == 1
 @assert !DynamicalSystems.isinplace(ds)
 
-figure = Figure(resolution = (1000, 800))
+figure = Figure(; size = (1000, 800))
 axts = figure[1, :] = Axis(figure)
 axmap = figure[2, :] = Axis(figure)
 
@@ -41,7 +41,7 @@ end
 
 x = Observable(get_float_trajectory(ds, L[], x0[]))
 xn = lift(a -> seriespoints(a), x)
-lines!(axts, xn; color = trajcolor, lw = 2.0)
+lines!(axts, xn; color = trajcolor, linewidth = 2.0)
 scatter!(axts, xn; color = trajcolor, markersize = 10)
 xlims!(axts, 0, 20) # this is better than autolimits
 ylims!(axts, xmin, xmax)

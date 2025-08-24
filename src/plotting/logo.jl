@@ -60,7 +60,7 @@ fill!(traj, Point2f(x2, y2))
 traj = Observable(traj)
 
 # %% Initialize figure
-fig = Figure(resolution = (1200, 800)); display(fig)
+fig = Figure(; size = (1200, 800)); display(fig)
 ax = Axis(fig[1,1])
 
 # Plot observables
