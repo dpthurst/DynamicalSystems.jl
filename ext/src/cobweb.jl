@@ -1,3 +1,8 @@
+# TODO (DPT 2025-09-02):
+#  * Make 'aspect = 1' optional
+#  * the "@assert" conditions are wrong, replace with tests
+#  * Add parname
+
 function DynamicalSystems.interactive_cobweb(
     ds, prange, O::Int = 3;
     fkwargs = [(linewidth = 4.0, color = randomcolor()) for i in 1:O],
@@ -17,7 +22,7 @@ function DynamicalSystems.interactive_cobweb(
 
 figure = Figure(; size = (1000, 800))
 axts = figure[1, :] = Axis(figure)
-axmap = figure[2, :] = Axis(figure)
+axmap = figure[2, :] = Axis(figure, aspect=1)
 
 sg = SliderGrid(figure[3, :],
     (label = pname, range = prange),

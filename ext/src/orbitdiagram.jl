@@ -1,8 +1,21 @@
 # TODO: Allow initial state to be a function of parameter (define function `get_u(f, p)`)
+# DONE:
+#  * integer conversion error (in initial set up of 'history' array)
+# IN PROGRESS (DPT 2025-09-02):
+#  * For some reason this doesn't actually show the orbit diagram. Call display()
+#  * Why are we returning the observables?
+#  * There's some complicated code allowing to switch the controlled index
+#    for multi-param systems. Disable that at least for 1-D systems
+#  * Probably related: does not work for very simple dynamical systems (use of set_parameter!)
+#  * Get rid of annoying Unicode characters
 
 function DynamicalSystems.interactive_orbitdiagram(ds, p_index, p_min, p_max, i0::Int = 1;
         u0 = nothing, parname = "p", title = ""
     )
+
+    # Apparently better: use type signature and conversion functions
+    p_min = convert(Float64,p_min)
+    p_max = convert(Float64,p_max)
 
     figure = Figure(size = (1200, 600))
     odax = figure[1,1] = Axis(figure; title)
@@ -116,6 +129,7 @@ function DynamicalSystems.interactive_orbitdiagram(ds, p_index, p_min, p_max, i0
         set_close_to!(dslider, dens)
     end
 
+    display(figure)
     return figure, (od_obs, ⬜p₋, ⬜p₊, ⬜u₋, ⬜u₊)
 end
 
